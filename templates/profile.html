@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>InflaTracker</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/220a280fe8.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='loginFile.css') }}" rel="stylesheet">
+    <style>
+        #profile {
+            background: rgb(118, 206, 250) !important;
+        }
+
+        #listOfStuffToChange {
+            margin-top: calc(75px + 7em);
+        }
+
+        #listOfStuffToChange>div {
+            border: 2px solid white;
+            color: white;
+            padding: 2px;
+            margin-top: -2px;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    {% if accountInfo %}
+    {% if accountInfo.user != "" %}
+    <div id="card">
+        {% if accountInfo.theProfileImg %}
+        <img src="{{ accountInfo.theProfileImg }}" alt="Profile Img" id="profilePic">
+        {% else %}
+        <img src="{{ logo }}" alt="Profile Img" id="profilePic">
+        {% endif %}
+        <div id="name">{{accountInfo.user}}</div>
+    </div>
+    <div id="listOfStuffToChange">
+        <div id="userchange" class="aag">Edit Username</div>
+        <div id="namechange" class="aag">Edit Name</div>
+        <div id="passwordchange" class="aag">Edit Password</div>
+        <div id="signout" class="aa">Sign Out</div>
+        <div id="goodfood" class="bb"></div>
+        <div id="badfood" class="bb"></div>
+        <div id="gooding" class="bb"></div>
+        <div id="bading" class="bb"></div>
+    </div>
+    <!--Okay, here we fill in some info about our user.
+            Some things we should contain:
+            - Things they recently ate
+            - 
+            -->
+    <div id="bottom_navigator">
+        <p id="swap"></p>
+        <a class="chi" href="profile.html" id="profile"><i class="fas fa-user"></i></a>
+        <a class="chi" href="stats.html" id="stats"><i class="fas fa-chart-line"></i></a>
+        <a class="chi" href="search.html" id="search"><i class="fas fa-search"></i></a>
+    </div>
+    <script>
+        let elements = document.getElementsByClassName("aag")
+        for (let i = 0; i < elements.length; i++) {
+            console.log(elements[i])
+            elements[i].addEventListener("click", () => {
+                let enterNew = prompt(elements[i].innerHTML)
+                let xhttp = new XMLHttpRequest()
+                xhttp.onreadystatechange = () => {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        window.location.reload(true)
+                    }
+                }
+                xhttp.open("GET", `/edit/${elements[i].id}/${enterNew}`)
+                xhttp.send()
+            })
+        }
+        let recs = document.getElementsByClassName("bb");
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = (e) => {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                let everything = e.target.responseText.split(";; ");
+                let phrases = ["INGREDIENTS TO EAT", "INGREDIENTS NOT TO EAT", "FOODS TO EAT", "FOODS NOT TO EAT"];
+                let colour = ["rgb(0, 255, 0)", "rgb(255, 51, 0)", "rgb(0, 255, 0)", "rgb(255, 51, 0)"];
+                let things = [goodfood, badfood, gooding, bading];
+                for (let i = 0; i < things.length; ++i) {
+                    recs[i].innerHTML = `${phrases[i]}<br>>${everything[i].split(",, ").join("<br>>")}`;
+                    // alert(phrases[i] + ": " + everything[i]);
+                    recs[i].style.color = colour[i];
+                }
+                // document.getElementById("back").checked = true;
+            }
+        }
+        xhttp.open("GET", "analyse");
+        xhttp.send();
+    </script>
+    {% else %}
+    <!--Ok, we don't have an account set up yet.-->
+    <!--We're going to make a super quick login portal for now, nothing fancy.-->
+    <div id="loading"></div>
+    <div id="login">
+        <img src="{{ logo }}" alt="Login Picture" id="pic">
+        <div id="cover"></div>
+        <div id="profileStand">InflaTracker</div>
+        <input type="text" placeholder="Username..." id="user">
+        <input type="password" placeholder="Password..." id="pass">
+        <button id="submitI">Log In</button>
+        <button id="signup">Sign Up</button>
+        <div id="err"></div>
+    </div>
+    <script src="{{ url_for('static', filename='signUp.js') }}"></script>
+    {% endif %}
+    {% endif %}
+</body>
+
+</html>
