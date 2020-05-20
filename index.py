@@ -38,8 +38,8 @@ class Crohns(makeAccount.CSV):
         self.change = False
         self.allCoord = np.array([np.array([x, y-x]) for j in self.stuff for _, x, y, _ in j])
     def printPoints(self):
-        x = [x for j in self.stuff for _, x, y, _ in j]
-        y = [y-x for j in self.stuff for _, x, y, _ in j]
+        # x = [x for j in self.stuff for _, x, y, _ in j]
+        # y = [y-x for j in self.stuff for _, x, y, _ in j]
         self.labels = [label for j in self.stuff for label, _, _, _ in j]
         if len(self.allCoord) == 0:
             plt.text(0, 0, "Make Sure To Eat First!", color="red", fontsize=15)
