@@ -1,5 +1,5 @@
 # InflaTracker
-An application to which unique ingredients cause Crohn Disease patients to have inflammation
+An application to identify which unique ingredients cause Crohn Disease patients to have inflammation
 
 ### Inspiration
 One of our teammate is suffering from Crohn's Disease. For a Crohn's Disease patient, it is often difficult to identify which ingredients in their foods causes inflammation of their stomach.
