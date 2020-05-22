@@ -1,6 +1,7 @@
 // Creates the server and manages all the GET/POST requests.
 const http = require("http"),
 fs = require("fs"),
+database = require("./database.js")
 MIMETypes = {
     "html": "text/html",
     "jpg": "image/jpeg",
@@ -9,10 +10,11 @@ MIMETypes = {
     "png": "image/png",
     "ttf": "font/ttf",
     "css": "text/css"
-},
-user = [
+}
+let user = [
     // We don't know anything about the user yet.
 ]
+console.log(database)
 http.createServer((req, res) => {
     let PathToRead = req.url
     if(req.method == "GET") {   

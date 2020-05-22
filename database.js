@@ -3,29 +3,27 @@ const fs = require('fs');
 const sha1 = require('sha1');
 // const crypto = require('sha1');
 
-class DataBaseWork {
+const DatabaseWork = {
     /**
-     * Sets up client. 
-     * @param {String} data 
-     */
-    constructor(url) {
-        this.client = new MongoClient(url); // Creates client
-    }
-
+    * Sets up client. 
+    * @param {String} data 
+    */
+    init: (url) => {
+       this.client = new MongoClient(url); // Creates client
+    },
     /**
      * Hashes the password
      * @param {String} password 
      */
-    hashPassword(password) {
+    hashPassword: (password) => {
         // console.log(hash.update(password).digest('base64'));
         return sha1(password);
-    }
-
+    },
     /**
      * Gets a user from the DB
      * @param {String} user 
      */
-    async getUser(user) {
+    getUser: async (user) => {
         let dat = null;
         try {
             await this.client.connect();
@@ -40,27 +38,25 @@ class DataBaseWork {
             await this.client.close();
             return dat;
         }
-    }
-
+    },
     /**
      * Verifies whether the user is in the DB
      * @param {String} user 
      */
-    userExists(user) {
+    userExists: (user) => {
         let val = this.getUser(user).catch(console.error).then(token => { return token });
         val.then((data) => {
             console.log(data);
             console.log(data!=null);
             return data != null;
         })
-    }
-
+    },
     /**
      * Verifies whether the password is correct
      * @param {String} user 
      * @param {String} password 
      */
-    authenticate(user, password) {
+    authenticate: (user, password) => {
         let val = this.getUser(user).catch(console.error).then(token => { return token });
         val.then((data) => {
             if (data) {
@@ -69,14 +65,13 @@ class DataBaseWork {
                 return data.password == sha1(password);
             } else console.error("USER DOES NOT EXIST");
         })
-    }
-
+    },
     /**
      * Adds a new user to our collection.
      * @param {String} user 
      * @param {String} password 
      */
-    async addUser(user, password) {
+    addUser: async (user, password) => {
         try {
             await this.client.connect(); // Connects to client
             // let val = this.getUser(user).catch(console.error).then(token => { return token });
@@ -95,8 +90,13 @@ class DataBaseWork {
         } finally {
             await this.client.close(); // Closes client connection
         }
-    }
-
+    },
+    /**
+     * Changes an old user's username and password.
+     * @param {String} oldUser
+     * @param {String} newUser
+     * @param {String} newPass
+    */
     async changeCredentials(oldUser, newUser, newPass) {
         try {
             await this.client.connect(); // Connects to client
@@ -117,17 +117,17 @@ class DataBaseWork {
             await this.client.close(); // Closes client connection
         }
     }
-
 }
-databaseI = new DataBaseWork()
+module.exports = DatabaseWork
+// databaseI = new DataBaseWork()
 
 
-fs.readFile('clienturl.txt', 'utf8', (err, data) => {
-    if (err) {
-        return console.error(err);
-    } else {
-        const url = data; // For safety's sake, our user credentials is on a separate doc
-        let dbwork = new DataBaseWork(url);
-        console.log(dbwork.changeCredentials("Name2", "Name2", "Hello"));
-    }
-});
+// fs.readFile('clienturl.txt', 'utf8', (err, data) => {
+//     if (err) {
+//         return console.error(err);
+//     } else {
+//         const url = data; // For safety's sake, our user credentials is on a separate doc
+//         let dbwork = new DataBaseWork(url);
+//         console.log(dbwork.changeCredentials("Name2", "Name2", "Hello"));
+//     }
+// });
