@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/GenericP3rson/InflaTracker#readme",
   "dependencies": {
-    "mongodb": "^3.5.7"
+    "mongodb": "^3.5.7",
+    "sha1": "^1.1.1"
   }
 }
