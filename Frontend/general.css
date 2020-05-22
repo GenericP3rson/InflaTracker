@@ -7,18 +7,12 @@
     overflow: hidden;
 }
 body {
-    --color-log: #6ABE84;
-    font-family: "Montserrat", sans-serif;
-	--shade-1: #BBDED6;
-	--shade-2: #61C0BF;
-    --shade-1-light: rgb(118, 204, 203);
-    --color: #DEE3D1;
-    --shade-3: #4BBCF4;
-    --shade-3-light: rgb(129, 214, 213);
-    --shade-5: #FFB6B9;
-    --shade-6: #FAE3D9;
-	--shade-4: #F26968;
-	cursor: default;
+    --shade-1: #462255;
+    --shade-2: #313B72;
+    --shade-3: #17B890;
+    --shade-4: #7EE081;
+    --shade-5: #C3F3C0;
+    --color: #ffffff;
     --background-color: #323339;
     --background-color-light: #535357;
     background: var(--background-color);

@@ -28,6 +28,7 @@ class DataBaseWork {
     }
     
 }
+databaseI = new DataBaseWork()
 
 fs.readFile('clienturl.txt', 'utf8', (err, data) => {
     if (err) {
