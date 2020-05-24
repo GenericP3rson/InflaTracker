@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>InflaTracker</title>
+    <style>
+        html {
+            --colour1: #462255;
+            --colour2: #313b72;
+            --colour3: #17b890;
+            --colour4: #7ee081;
+            --colour5: #c3f3c0;
+            --background: #ffffff;
+        }
+
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            /* width: 100vw;
+                height: 100vh; */
+            background-color: var(--background);
+        }
+
+        #answers {
+            margin: 0 auto;
+            width: 80%;
+            padding-top: 50px;
+            margin-top: -25px;
+        }
+
+        #top_bar_2 {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: right;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .left {
+            float: left;
+        }
+
+        a {
+            color: var(--colour2);
+            text-decoration: none;
+            display: block;
+            padding: 30px 50px;
+        }
+
+        a:hover {
+            color: var(--colour3);
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #top_bar {
+            font-size: 20px;
+            width: 100%;
+            top: 0;
+            position: relative;
+            /* background-color: var(--colour4); */
+            height: 190px;
+        }
+
+        #logo_div {
+            position: absolute;
+            left: calc(50% - 150px);
+            top: 0;
+            width: 150px;
+            height: 150px;
+            margin-left: none;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 150px;
+        }
+
+        #top {
+            width: 80%;
+            left: 12.5vw;
+            position: relative;
+            float: left;
+            padding-top: 2vh;
+            text-decoration: none;
+            /* font-weight: normal; */
+            top: 70%;
+            color: var(--background);
+            font-size: 5vw;
+        }
+
+        #front {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75vh;
+            background-color: var(--colour1);
+        }
+
+        #sugpage {
+            position: relative;
+            top: 0;
+            left: 0;
+            background-color: var(--background);
+            width: 100%;
+            height: 130vh;
+        }
+
+        #bottom_bar {
+            position: relative;
+            top: 0;
+            left: 0;
+            background-color: var(--background);
+            width: 100%;
+            height: 10vh;
+            border-top: 1px solid grey;
+        }
+
+        #bottom {
+            position: relative;
+            height: 8vh;
+            width: 8vh;
+            padding: 0;
+            margin: 0;
+            float: left;
+        }
+
+        #copy {
+            float: right;
+            padding-top: 0;
+            /* margin-top: -1px; */
+            position: relative;
+            /* padding-top: 0px; */
+        }
+
+        #copy:hover {
+            color: var(--colour1)
+        }
+
+        .card {
+            position: relative;
+            height: 25vh;
+            width: 80vw;
+            background-color: var(--colour5);
+            /* padding-top: 25vh; */
+            top: 5vh;
+            left: 10vw;
+            box-shadow: 0 0 5px 5px grey;
+        }
+
+        #title {
+            text-align: center;
+            margin: 0;
+            float: left;
+            padding-left: 5vw;
+            padding-top: 3.5vh;
+        }
+
+        .list {
+            font-size: 25px;
+        }
+
+        #list1 {
+            float: right;
+            padding-right: 5vw;
+            width: 25vw;
+            height: 25vh;
+        }
+
+        #card2 {
+            margin-top: 5vh;
+        }
+
+        .cardt2 {
+            position: relative;
+            height: 25vh;
+            width: 30vw;
+            background-color: var(--colour4);
+            /* padding-top: 25vh; */
+            top: 5vh;
+            left: 10vw;
+            box-shadow: 0 0 5px 5px grey;
+        }
+
+        #leftcard {
+            margin-top: 5vh;
+            float: left;
+        }
+
+        #rightcard {
+            margin-top: 5vh;
+            float: left;
+            top: 2vh;
+            /* margin-right: 20vw; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="background"></div>
+    <div id="top_bar">
+        <div id="logo_div">
+            <a href=""><img src="favicon.ico"></a>
+        </div>
+        <div id="answers">
+            <ul id="top_bar_2">
+                <li><a href="" class="left">Home</a></li>
+                <li><a href="" class="left">Pick Foods</a></li>
+
+                <li><a href="" class="right">Your Predictions</a></li>
+                <li><a href="" class="right">Profile</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="front">
+        <h1 id="top">Your Suggestions</h1>
+    </div>
+    <div id="sugpage">
+        <div class="card" id="card1">
+            <h1 id="title"><br>Safe Foods</h1>
+            <ul id="list1">
+                <!-- TODO : Get the Foods (Top 5) -->
+                <li class="list">Bread</li>
+                <li class="list">Pad-Thai</li>
+                <li class="list">Soda</li>
+                <li class="list">Peanut Butter Crackers</li>
+                <li class="list">Water</li>
+            </ul>
+        </div>
+        <div class="card" id="card2">
+            <h1 id="title"><br>Unsafe Foods</h1>
+            <ul id="list1">
+                <!-- TODO : Get the Foods (Top 5) -->
+                <li class="list">Coconut</li>
+                <li class="list">Cherries</li>
+                <li class="list">Penicilin</li>
+                <li class="list">Milk</li>
+                <li class="list">Potatoes</li>
+            </ul>
+        </div>
+        <div class="card" id="card2">
+            <h1 id="title"><br>Safe Ingredients</h1>
+            <ul id="list1">
+                <!-- TODO : Get the Foods (Top 5) -->
+                <li class="list">Sugar</li>
+                <li class="list">Salt</li>
+                <li class="list">Water</li>
+                <li class="list">Milk</li>
+                <li class="list">Potatoes</li>
+            </ul>
+        </div>
+        <div class="card" id="card2">
+            <h1 id="title"><br>Unsafe Foods</h1>
+            <ul id="list1">
+                <!-- TODO : Get the Foods (Top 5) -->
+                <li class="list">Coconut</li>
+                <li class="list">Cherries</li>
+                <li class="list">Penicilin</li>
+                <li class="list">Milk</li>
+                <li class="list">Potatoes</li>
+            </ul>
+        </div>
+        <!-- <div class= "card" id = "card2">
+                <ul id = "top_bar_2">
+                    <li>
+                        <div class="cardt2" id="leftcard">
+                            <h1><br>Unsafe Foods</h1>
+                            <ul>
+                                TODO : Get the Foods (Top 5)
+                                <li class="list">Coconut</li>
+                                <li class="list">Cherries</li>
+                                <li class="list">Penicilin</li>
+                                <li class="list">Milk</li>
+                                <li class="list">Potatoes</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cardt2" id="rightcard">
+                            <h1><br>Unsafe Foods</h1>
+                            <ul>
+                                TODO : Get the Foods (Top 5)
+                                <li class="list">Coconut</li>
+                                <li class="list">Cherries</li>
+                                <li class="list">Penicilin</li>
+                                <li class="list">Milk</li>
+                                <li class="list">Potatoes</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+    </div>
+
+    <div id="bottom_bar">
+        <a href=""><img id="bottom" src="favicon.ico"></a>
+        <ul id="top_bar_2">
+            <li><a href="" class="left" id="copy">© 2020 ClonesCode</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>
