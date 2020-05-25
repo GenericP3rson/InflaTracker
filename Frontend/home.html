@@ -1,78 +1,178 @@
+
+  
 <!DOCTYPE html>
 <html>
+
+<head>
     <title>InflaTracker</title>
-    <head>
-        <link href="general.css" rel="stylesheet">
-        <!-- <link href="styles.css" rel="stylesheet"> -->
-        <script src="icons.js" crossorigin="anonymous"></script>
-        <style>
-            .b {
-                transition: 0.25s;
-                box-shadow: 0.1em 0.1em 5px 0 rgba(0, 0, 0, 0),
-     -0.1em -0.1em 5px 0 rgba(255, 255, 255, 0.3),
-     0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.2) inset !important;
-                border-radius: 5px 5px 0 0 !important;
-                height: 4em !important;
-                z-index: 1;
-            }
-            #main {
-                position: fixed;
-                top: 5em;
-                left: 0;
-                width: 100%;
-                height: calc(100% - 5em);
-                background: linear-gradient(10deg, var(--background-color), rgba(0, 0, 0, 0.1)) !important;
-                z-index: 2;
-                box-shadow: 0.1em 0.1em 5px 0 rgba(0, 0, 0, 0),
-     -0.1em -0.1em 5px 0 rgba(255, 255, 255, 0.3),
-     0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.2) inset !important;
-            }
-        </style>
-    </head>
-    <body>
-        <!--
-            Some ideas: https://miro.medium.com/max/3840/1*Np2fkHxtyaf1jKguZK6BIQ.png
-            https://image.shutterstock.com/image-vector/mobile-app-infographic-template-modern-260nw-1236409636.jpg
-        -->
-        <!-- <input type="text" id="a" placeholder="Enter food..." autocomplete="off" name="Enter Food">
-        <button id="submit">Search</button> -->
-        <div id="option"></div>
-        <div id="bottom_navigator">
-            <p id="swap"></p>
-            <a class="a" href="stats.html" id="stats">
-                <i class="fas fa-chart-line"></i>
-            </a>
-            <a class="b" href="home.html" id="profile">
-                <i class="fas fa-user"></i>
-            </a>
-            <a class="c" href="search.html" id="search">
-                <i class="fas fa-search"></i>
-            </a>
-        </div>
-        <div id="main">
+    <link rel="stylesheet" type="text/css" href="general.css">
+    <style>
+        @font-face {
+            font-family: "Montserrat";
+            src: url("Montserrat/Montserrat-Regular.ttf") format("truetype");
+        }
+        :root {
+            --top-bar-size: 15vh;
+        }
+        #top_bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--top-bar-size);
+            background: var(--shade-2);
+            overflow: hidden;
+            box-shadow: 0 0.1em 5px 0 rgba(0, 0, 0, 0.5);
+        }
+        #logo_div {
+            width: 100%;
+            height: calc(var(--top-bar-size) - 1em);
+        }
+        #top_bar > a {
+            color: var(--background-color);
+            outline: none;
+            border: none;
+            display: block;
+            top: -2em;
+            text-decoration: none;
+            font-family: "Montserrat";
+        }
+        #top_bar > *:hover {
+            transition: 0.25s;
+            background: var(--shade-3);
+        }
+        #top_bar > * {
+            width: calc(100% / 5);
+            height: var(--top-bar-size);
+            transition: 0.25s;
+            float: left;
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: var(--top-bar-size);
+            white-space: nowrap;
+        }
+        #wrapper > #big {
+            width: calc(var(--top-bar-size) - 1em);
+            height: calc(var(--top-bar-size) - 1em);
+            position: relative;
+            /* filter: hue-rotate(200deg) brightness(150%); */
+            /* top: 50vh; */
+            /* margin-top: calc(var(--top-bar-size)); */
+        }
+        #wrapper > #small {
+            display: block;
+            position: absolute;
+            width: calc(100% / 5);
+            top: calc(var(--top-bar-size) - 4em);
+            height: 4em;
+            text-align: center;
+            color: var(--background-color);
+        }
+        body {
+            margin-top: var(--top-bar-size);
+        }
+    </style>
+</head>
 
+<body>
+    <div id="background"></div>
+    <div id="top_bar">
+                <a href="home.html" class="left">Home</a>
+                <a href="pickFoods.html" class="left">Pick Foods</a>
+                <a id="wrapper" href="about.html">
+                    <img src="favicon.ico" href="about.html" id="big">
+                    <div id="small">InflaTracker</div>
+                </a>
+                <a href="profile.html" class="right">Profile</a>
+                <a href="predictions.html" class="right">Predictions</a>
+    </div>
+    <div id="front">
+        <h1 id="top">Your Suggestions</h1>
+    </div>
+    <div id="sugpage">
+        <div class="card" id="card1">
+            <h1 id="title"><br>Safe Foods</h1>
+            <ul id="list1">
+                <!-- TODO : Get the Foods (Top 5) -->
+                <li class="list">Bread</li>
+                <li class="list">Pad-Thai</li>
+                <li class="list">Soda</li>
+                <li class="list">Peanut Butter Crackers</li>
+                <li class="list">Water</li>
+            </ul>
         </div>
+        <div class="card" id="card2">
+            <h1 id="title"><br>Unsafe Foods</h1>
+            <ul id="list1">
+                <!-- TODO : Get the Foods (Top 5) -->
+                <li class="list">Coconut</li>
+                <li class="list">Cherries</li>
+                <li class="list">Penicilin</li>
+                <li class="list">Milk</li>
+                <li class="list">Potatoes</li>
+            </ul>
+        </div>
+        <div class="card" id="card2">
+            <h1 id="title"><br>Safe Ingredients</h1>
+            <ul id="list1">
+                <!-- TODO : Get the Foods (Top 5) -->
+                <li class="list">Sugar</li>
+                <li class="list">Salt</li>
+                <li class="list">Water</li>
+                <li class="list">Milk</li>
+                <li class="list">Potatoes</li>
+            </ul>
+        </div>
+        <div class="card" id="card2">
+            <h1 id="title"><br>Unsafe Foods</h1>
+            <ul id="list1">
+                <!-- TODO : Get the Foods (Top 5) -->
+                <li class="list">Coconut</li>
+                <li class="list">Cherries</li>
+                <li class="list">Penicilin</li>
+                <li class="list">Milk</li>
+                <li class="list">Potatoes</li>
+            </ul>
+        </div>
+        <!-- <div class= "card" id = "card2">
+                <ul id = "top_bar_2">
+                    <li>
+                        <div class="cardt2" id="leftcard">
+                            <h1><br>Unsafe Foods</h1>
+                            <ul>
+                                TODO : Get the Foods (Top 5)
+                                <li class="list">Coconut</li>
+                                <li class="list">Cherries</li>
+                                <li class="list">Penicilin</li>
+                                <li class="list">Milk</li>
+                                <li class="list">Potatoes</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cardt2" id="rightcard">
+                            <h1><br>Unsafe Foods</h1>
+                            <ul>
+                                TODO : Get the Foods (Top 5)
+                                <li class="list">Coconut</li>
+                                <li class="list">Cherries</li>
+                                <li class="list">Penicilin</li>
+                                <li class="list">Milk</li>
+                                <li class="list">Potatoes</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+    </div>
 
-        <script>
-            // We're automatically directed to this page.
-            // If we can't sign in, we have to go to the sign up/login page.
-            let xhttp = new XMLHttpRequest()
-            xhttp.onreadystatechange = () => {
-                if(xhttp.readyState == 4 && xhttp.status == 200) {
-                    console.log(xhttp.responseText)
-                    // if(window.location.href.split("/")[4] == undefined && window.location.href.split("/")[3] == xhttp.responseText) {
-                    //     // Don't do anything. We're logged in, which is good.
-                    // }
-                    // else {
-                    //     window.location.href = xhttp.responseText
-                    // }
-                } if(xhttp.readyState == 4 && xhttp.status == 403) {
-                    // Forbidden, reroute to xhttp.responseText
-                    window.location.href = xhttp.responseText
-                }
-            }
-            xhttp.open("POST", "/")
-            xhttp.send("username&password")
-        </script>
-    </body>
+    <div id="bottom_bar">
+        <a href=""><img id="bottom" src="favicon.ico"></a>
+        <ul id="top_bar_2">
+            <li><a href="" class="left" id="copy">&#169; 2020 ClonesCode</a></li>
+        </ul>
+    </div>
+</body>
+
 </html>
