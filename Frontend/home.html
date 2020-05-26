@@ -1,5 +1,3 @@
-
-  
 <!DOCTYPE html>
 <html>
 
@@ -11,9 +9,15 @@
             font-family: "Montserrat";
             src: url("Montserrat/Montserrat-Regular.ttf") format("truetype");
         }
+
         :root {
             --top-bar-size: 15vh;
+            --button-background1: #7ee081;
+            --button-background2: #c3f3c0;
+            --text-colour: white;
+            --background-colour: #462255;
         }
+
         #top_bar {
             position: fixed;
             top: 0;
@@ -25,11 +29,13 @@
             box-shadow: 0 0.1em 5px 0 rgba(0, 0, 0, 0.5);
             z-index: 1000;
         }
+
         #logo_div {
             width: 100%;
             height: calc(var(--top-bar-size) - 1em);
         }
-        #top_bar > a {
+
+        #top_bar>a {
             color: var(--background-color);
             outline: none;
             border: none;
@@ -38,11 +44,13 @@
             text-decoration: none;
             font-family: "Montserrat";
         }
-        #top_bar > *:hover {
+
+        #top_bar>*:hover {
             transition: 0.25s;
             background: var(--shade-3);
         }
-        #top_bar > * {
+
+        #top_bar>* {
             width: calc(100% / 5);
             height: var(--top-bar-size);
             transition: 0.25s;
@@ -53,12 +61,14 @@
             line-height: var(--top-bar-size);
             white-space: nowrap;
         }
-        #wrapper > #big {
+
+        #wrapper>#big {
             width: calc(var(--top-bar-size) - 1em);
             height: calc(var(--top-bar-size) - 1em);
             position: relative;
         }
-        #wrapper > #small {
+
+        #wrapper>#small {
             display: block;
             position: absolute;
             width: calc(100% / 5);
@@ -67,9 +77,11 @@
             text-align: center;
             color: var(--background-color);
         }
+
         body {
             margin-top: var(--top-bar-size);
         }
+
         #bottom_bar {
             position: relative;
             top: 0;
@@ -92,9 +104,7 @@
         #copy {
             float: right;
             padding-top: 0;
-            /* margin-top: -1px; */
             position: relative;
-            /* padding-top: 0px; */
         }
 
         #copy:hover {
@@ -104,28 +114,16 @@
         button {
             width: 150px;
             height: 50px;
-            background-color: #7ee081;
+            background-color: var(--button-background1);
             left: calc(40vw - 75px);
             position: relative;
             margin-top: 5vh;
-        }
-
-        @keyframes example {
-            0%   {transform: rotate(0deg);}
-            50%  {transform: rotate(5deg);}
-            /* 80%  {transform: rotate(-10deg);} */
-            100% {transform: rotate(0deg);}
-            /* 0%   {transform: rotate(0deg);}
-            33% {tranform: rotate(10deg);}
-            33% {tranform: rotate(0deg);} */
+            color: var(--text-colour);
         }
 
         button:hover {
-            /* transform: rotate(15deg); */
-            /* background-color: red; */
-            animation-name: example;
-            animation-duration: 1s;
-            background-color: #c3f3c0;
+            transform: rotate(5deg);
+            background-color: var(--button-background2);
         }
 
         .section {
@@ -133,17 +131,54 @@
             width: 80%;
             left: 10vw;
             height: 40vh;
-            background-color: #462255;
+            background-color: var(--background-colour);
             margin-top: 5vh;
             margin-bottom: 5vh;
         }
+
         .subhead {
             padding-top: 5vh;
-            color: white;
+            color: var(--text-colour);
             text-align: center;
         }
-        #select {
-            margin-top: 20vh;
+        
+        #welcome {
+            float: left;
+            margin: 5vh;
+            padding-top: 0;
+        }
+        #profile_button {
+            float: right;
+            width: 150px;
+            height: 50px;
+            background-color: var(--button-background1);
+            left: 0;
+            position: relative;
+            margin: 5vh;
+            color: var(--text-colour);
+        }
+        #profile {
+            margin-top: 17vh;
+            left: 5vw;
+            width: 90vw;
+            height: calc(50px + 10vh);
+            border-radius: 100px
+        }
+
+        /* #select {
+            float: left;
+        } */
+        /* #suggestions {
+            margin-left: 10vh;
+        } */
+
+        #id_panels {
+            position: relative;
+            top: 0;
+            left: 10vw;
+            height: 60vh;
+            overflow: none;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -160,25 +195,27 @@
         <a href="profile.html" class="right">Profile</a>
         <a href="predictions.html" class="right">Predictions</a>
     </div>
-    <div id = "select" class = "section">
-        <h1 class = "subhead">Don't Forget to Log Your Meals!</h1>
-        <button>Log Foods!</button>
+    <div id="profile" class="section">
+        <h1 class="subhead" id = "welcome">Welcome!</h1>
+        <a href = "profile.html"><button id="profile_button">Edit Profile! &#8594;</button></a>
     </div>
-    <div id = "suggestions" class = "section">
-        <h1 class = "subhead">Your Suggestions</h1>
-        <div id = "three_suggestions"></div>
-        <button>See More!</button>
+    <div id = "two_panels">
+        <div id="select" class="section">
+            <h1 class="subhead">Don't Forget to Log Your Meals!</h1>
+                <button>Find More Foods &#8594;</button>
+        </div>
+        <div id="suggestions" class="section">
+            <h1 class="subhead">Your Suggestions</h1>
+                <div id="three_suggestions"></div>
+                <button>See More! &#8594;</button>
+        </div>
     </div>
-    <div id = "profile" class = "section">
-        <h1 class="subhead">Make Sure Your Profile is up to Date</h1>
-        <button>Edit Profile!</button>
-    </div>
-    <div id="bottom_bar">
+    <!-- <div id="bottom_bar">
         <a href=""><img id="bottom" src="favicon.ico"></a>
         <ul id="top_bar_2">
             <li><a href="" class="left" id="copy">&#169; 2020 ClonesCode</a></li>
         </ul>
-    </div>
+    </div> -->
 </body>
 
 </html>
