@@ -1,6 +1,265 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        Pick Your Foods
-    </body>
+
+<head>
+    <title>InflaTracker</title>
+    <script src="redirect.js"></script>
+    <link rel="stylesheet" type="text/css" href="general.css">
+    <style>
+        @font-face {
+            font-family: "Montserrat";
+            src: url("Montserrat/Montserrat-Regular.ttf") format("truetype");
+        }
+        :root {
+            --top-bar-size: 15vh;
+            --offset-cards: 2em;
+        }
+        #top_bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--top-bar-size);
+            background: var(--shade-2);
+            overflow: hidden;
+            box-shadow: 0 0.1em 5px 0 rgba(0, 0, 0, 0.5);
+        }
+        #logo_div {
+            width: 100%;
+            height: calc(var(--top-bar-size) - 1em);
+        }
+        #top_bar > a {
+            color: var(--background-color);
+            outline: none;
+            border: none;
+            display: block;
+            top: -2em;
+            text-decoration: none;
+            font-family: "Montserrat";
+        }
+        #top_bar > *:hover {
+            transition: 0.25s;
+            background: var(--shade-3);
+        }
+        #top_bar > * {
+            width: calc(100% / 5);
+            height: var(--top-bar-size);
+            transition: 0.25s;
+            float: left;
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: var(--top-bar-size);
+            white-space: nowrap;
+        }
+        #wrapper > #big {
+            width: calc(var(--top-bar-size) - 1em);
+            height: calc(var(--top-bar-size) - 1em);
+            position: relative;
+            /* filter: hue-rotate(200deg) brightness(150%); */
+            /* top: 50vh; */
+            /* margin-top: calc(var(--top-bar-size)); */
+        }
+        #wrapper > #small {
+            display: block;
+            position: absolute;
+            width: calc(100% / 5);
+            top: calc(var(--top-bar-size) - 4em);
+            height: 4em;
+            text-align: center;
+            color: var(--background-color);
+        }
+        body {
+            margin-top: var(--top-bar-size);
+            background: #E4EAF8;
+        }
+        .card {
+            position: relative;
+            /* margin-top: calc(var(--top-bar-size) + 1em); */
+            width: calc(100% - var(--offset-cards));
+            margin-left: calc(var(--offset-cards) / 2);
+            height: 5em;
+            background: transparent;
+            overflow: hidden;
+            margin-top: 1em;
+            border-radius: 1em;
+            background: linear-gradient(to right, rgb(252, 253, 255), rgb(234, 238, 248));
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: 0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.3),
+            -0.1em -0.1em 10px 0 white,
+            0.1em 0.1em 5px 0 rgba(61, 18, 18, 0) inset,
+            -0.2em -0.2em 16px 0 rgba(255, 255, 255, 0) inset;
+        }
+        .card:hover {
+            transition: 0.25s;
+            box-shadow: 0.1em 0.1em 5px 0 rgba(0, 0, 0, 0),
+            -0.2em -0.2em 10px 0 rgba(255, 255, 255, 0),
+            0.1em 0.1em 5px 0 rgba(61, 18, 18, 0.3) inset,
+            -0.2em -0.2em 16px 0 rgba(255, 255, 255, 0.3) inset;
+        }
+        #im {
+            width: 4em;
+            height: 4em;
+            margin-top: 0.5em;
+            /* padding-left: 1em; */
+            margin-left: 1em;
+            border-radius: 2em;
+        }
+        #nameF {
+            font-weight: 900;
+            margin-top: -4em;
+            margin-left: 6em;
+        }
+        #extra {
+            color: rgb(138, 138, 138);
+            margin-left: 6em;
+        }
+        h1 {
+            color: var(--shade-1);
+        }
+        .heart {
+            font-size: 30px;
+            margin-top: -1em;
+            margin-left: calc(100% - 45px);
+            opacity: 0;
+            padding: 5px;
+            color: black;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .card:hover .heart {
+            opacity: 1;
+            transition: 0.25s;
+        }
+        .inside {
+            background: rgb(208, 217, 240);
+            position: fixed; /*Should this be fixed???*/
+            width: 20em;
+            left: calc(100% - 21em);
+            color: var(--shade-1);
+            top: calc(var(--top-bar-size) + 1em);
+            border-radius: 10px;
+            box-shadow: 0.3em 0.2em 5px 0 rgba(0, 0, 0, 0.3) inset,
+            -0.3em -0.2em 16px 0 rgba(255, 255, 255, 0.9) inset,
+            0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.05);
+            height: calc(100% - var(--top-bar-size) - 2em)
+        }
+        .search_bar {
+            position: relative;
+            outline: none;
+            margin-top: 1em;
+            font-family: "Montserrat";
+            color: var(--shade-1);
+            border: 2px solid var(--shade-1);
+            padding-left: 2.5em;
+            padding-right: 7em;
+            border-radius: 5em;
+            background: transparent;
+            width: calc(100% - var(--offset-cards) - 9.5em);
+            margin-left: calc(var(--offset-cards) / 2);
+            height: 5em;
+            box-shadow: 0.1em 0.1em 16px 0 rgba(0, 0, 0, 0.3),
+            -0.1em -0.1em 16px 0 rgba(255, 255, 255, 0.9);
+        }
+        .search_bar::placeholder {
+            color: rgb(200, 200, 200);
+        }
+        .button, .button-1 {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            height: 3em;
+            margin-top: -3.75em;
+            width: 5em;
+            float: right;
+            position: relative;
+            margin-right: calc(var(--offset-cards)/2);
+            text-align: center;
+            z-index: 5;
+            cursor: pointer;
+            line-height: 3em;
+            background: linear-gradient(
+                -45deg,
+                #462255e5,
+                #8e5ca381);
+            color: white;
+            box-shadow: 0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.5),
+            -0.2em -0.2em 16px 0 rgba(255, 255, 255, 0.9);
+            border-radius: 5em;
+        }
+        .button-1 {
+            margin-right: 0;
+            box-shadow: none;
+            margin-top: -3em;
+            background: linear-gradient(
+                135deg,
+                #462255e5,
+                #8e5ca381);
+            opacity: 0;
+            transition: 0.25s;
+        }
+        .button:hover .button-1 {
+            transition: 0.25s;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="background"></div>
+    <div id="top_bar">
+                <a href="home.html" class="left">Home</a>
+                <a href="pickFoods.html" class="left">Pick Foods</a>
+                <a id="wrapper" href="about.html">
+                    <img src="favicon.ico" href="about.html" id="big">
+                    <div id="small">InflaTracker</div>
+                </a>
+                <a href="profile.html" class="right">Profile</a>
+                <a href="predictions.html" class="right">Predictions</a>
+    </div>
+    <div id="main">
+        <h1>Add Foods</h1>
+        <div class="inside">
+            <input class="search_bar" placeholder="Search Foods...">
+            <div class="button">Go<div class="button-1">Go</div></div>
+            <div class="card" id="foodName">
+                <img src="img.jpg" alt="Image of food" id="im">
+                <div id="nameF">Name of Food</div>
+                <div id="extra">Extra info</div>
+                <div class="heart">&#9829;</div>
+            </div>
+            <div class="card" id="foodName">
+                <img src="img.jpg" alt="Image of food" id="im">
+                <div id="nameF">More food!</div>
+                <div id="extra">Extra info</div>
+                <div class="heart">&#9829;</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bottom_bar">
+        <a href=""><img id="bottom" src="favicon.ico"></a>
+        <ul id="top_bar_2">
+            <li><a href="" class="left" id="copy">&#169; 2020 ClonesCode</a></li>
+        </ul>
+    </div>
+    <script>
+        let elements = document.getElementsByClassName("heart")
+        for(let i = 0; i < elements.length; i++) {
+            elements[i].addEventListener("click", () => {
+                if(elements[i].style.color == "red") {
+                    elements[i].style.color = "black";
+                } else {
+                    elements[i].style.color = "red";
+                }
+                /*TODO: Push favourites to database*/
+            })
+        }
+    </script>
+</body>
+
 </html>

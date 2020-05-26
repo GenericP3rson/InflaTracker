@@ -51,7 +51,7 @@ let serv = http.createServer((req, res) => {
                 if(kee[i].split("=").length == 1 && kee[i].split("|").length == 1) {
                     if("name" in userLoggedIn && "password" in userLoggedIn) {
                         res.writeHead(200)
-                        res.write("Yeeeeah.")
+                        res.write("Logged in.")
                         res.end()
                         messageI = true
                     } else { // Then they need to go to the signin page.

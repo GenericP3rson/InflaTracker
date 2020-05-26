@@ -13,7 +13,7 @@ body {
     --shade-4: #7EE081;
     --shade-5: #C3F3C0;
     --color: #141313;
-    --background-color: #f7f5f5;
+    --background-color: #e7e7e7;
     --background-color-light: #535357;
     background: var(--background-color);
     font-family: "Montserrat", 'Lucida Sans', sans-serif;
