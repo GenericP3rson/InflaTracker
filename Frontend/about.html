@@ -1,12 +1,96 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <style>
+            @font-face {
+                font-family: "Montserrat";
+                src: url("Montserrat/Montserrat-Regular.ttf") format("truetype");
+            }
+            :root {
+                --top-bar-size: 15vh;
+            }
+            #top_bar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: var(--top-bar-size);
+                background: var(--shade-2);
+                overflow: hidden;
+                box-shadow: 0 0.1em 5px 0 rgba(0, 0, 0, 0.5);
+            }
+            #logo_div {
+                width: 100%;
+                height: calc(var(--top-bar-size) - 1em);
+            }
+            #top_bar > a {
+                color: var(--background-color);
+                outline: none;
+                border: none;
+                display: block;
+                top: -2em;
+                text-decoration: none;
+                font-family: "Montserrat";
+            }
+            #top_bar > *:hover {
+                transition: 0.25s;
+                background: var(--shade-3);
+            }
+            #top_bar > * {
+                width: calc(100% / 5);
+                height: var(--top-bar-size);
+                transition: 0.25s;
+                float: left;
+                text-align: center;
+                font-weight: 900;
+                letter-spacing: 2px;
+                line-height: var(--top-bar-size);
+                white-space: nowrap;
+            }
+            #wrapper > #big {
+                width: calc(var(--top-bar-size) - 1em);
+                height: calc(var(--top-bar-size) - 1em);
+                position: relative;
+                /* filter: hue-rotate(200deg) brightness(150%); */
+                /* top: 50vh; */
+                /* margin-top: calc(var(--top-bar-size)); */
+            }
+            #wrapper > #small {
+                display: block;
+                position: absolute;
+                width: calc(100% / 5);
+                top: calc(var(--top-bar-size) - 4em);
+                height: 4em;
+                text-align: center;
+                color: var(--background-color);
+            }
+            body {
+                margin-top: var(--top-bar-size);
+            }
+            
+        </style>
+    </head>
     <body>
+        <div id="top_bar">
+            <a href="home.html" class="left">Home</a>
+            <a href="pickFoods.html" class="left">Pick Foods</a>
+            <a id="wrapper" href="about.html">
+                <img src="favicon.ico" href="about.html" id="big">
+                <div id="small">InflaTracker</div>
+            </a>
+            <a href="profile.html" class="right">Profile</a>
+            <a href="predictions.html" class="right">Predictions</a>
+        </div>
         <h1>About Us</h1>
         <p>
             Hi there!
             <br>
-            We are Sarah Cross and Shreya Chaudhary, two highschoolers
-            looking to make a difference in the world.
+            We are Sarah Cross and Shreya Chaudhary, two high schoolers
+            looking to make a difference in the world. We met when were in middle school, and
+            we were the only two females who signed up for the school's new robotics elective.
+            We were instantly friends and bonded over our love for technology and making the society
+            a better place to help those we love. Ever since middle school, we have been working together,
+            striving to better our world one line of code at a time.
             <br>
         </p>
         <h1>Our Story</h1>
@@ -25,6 +109,8 @@
             level of experimentation in this. This is meant for people who are willing to put themselves 
             out there, try new things, and help the algorithm learn. We highly recommend to consult your 
             doctor first before using our application.
+            <br>
+            We are not liable for any negative consequences resulting from this app.
         </p>
     </body>
 </html>
