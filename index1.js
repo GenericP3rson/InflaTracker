@@ -10,12 +10,15 @@ MIMETypes = {
     "png": "image/png",
     "ttf": "font/ttf",
     "css": "text/css"
-},
-userLoggedIn = {}
+}, // An object which holds all the different file endings and what to put in the content header when I send it over to the frontend.
+userLoggedIn = {} // A placeholder to tell whether we're logged in or not
+// it will hold all the user's data once we've logged in. For now, this is empty, because we haven't logged in yet.
 let serv = http.createServer((req, res) => {
     let PathToRead = req.url
     if(req.method == "GET") {   
         if(req.url == "/") {
+            // The home page.
+            // When the user first reaches the page.
             PathToRead = "/home.html"
         }
         fs.readFile("Frontend" + PathToRead, (err, message) => {
@@ -31,18 +34,21 @@ let serv = http.createServer((req, res) => {
                 // Find MIME type
                 console.log(PathToRead)
                 let MType = MIMETypes[PathToRead.split(".")[1]] || "application/octet-stream"
+                // Octet-stream is the default for if I can't find out what file type it is.
                 console.log(MType)
                 res.writeHead(200, {"Content-Type": MType})
                 res.write(message)
                 res.end()
             }
         })
-    } else {
+    } else { // POST requests
         let message = ""
         req.on("data", chunk => {
+            // The data is sent in chunks, and this is adding up all the chunks and putting them together.
             message += chunk.toString()
         })
         req.on("end", () => {
+            // We've received all the chunks and now we process them.
             let messageI = false,
             kee = message.split("&")
             for(let i = 0; i < kee.length; i++) {

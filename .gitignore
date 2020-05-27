@@ -1,5 +1,7 @@
 node_modules
 clienturl.txt
-Frontend/Montserrat
+Frontend/Montserrat/*
+!Frontend/Montserrat/Montserrat-Regular.ttf
+!Frontend/Montserrat/Montserrat-ExtraBold.ttf
 __pycache__/
 
