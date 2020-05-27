@@ -12,8 +12,8 @@ MIMETypes = {
     "css": "text/css"
 },
 userLoggedIn = {}
-let serv = http.createServer((req, res) => {
-    let PathToRead = req.url
+let serv = http.createServer((req, res) => { // Creates server
+    let PathToRead = req.url // URL
     if(req.method == "GET") {   
         if(req.url == "/") {
             PathToRead = "/home.html"
