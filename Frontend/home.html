@@ -13,10 +13,11 @@
 
         :root {
             --top-bar-size: 15vh;
-            --button-background1: #7ee081;
-            --button-background2: #c3f3c0;
+            --button-background1: #45f5c9;
+            --button-background2: #5bffd6;
             --text-colour: white;
-            --background-colour: #462255;
+            --background-colour: #17b890;
+            --options-colour: #3adab2;
         }
 
         #top_bar {
@@ -120,6 +121,8 @@
             position: relative;
             margin-top: 5vh;
             color: var(--text-colour);
+            box-shadow: (-0.1em -0.1em 5px 0 white/rgba(255, 255, 255, 0.6));
+            box-shadow: (0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.1));
         }
 
         button:hover, #profile_button:hover {
@@ -136,7 +139,9 @@
             background-color: var(--background-colour);
             /* margin-top: 5vh; */
             margin-bottom: 5vh;
-            border-radius: 50px;
+            border-radius: 1em;
+            box-shadow: -0.1em -0.1em 5px 0 white/rgba(255, 255, 255, 0.6);
+            box-shadow: 0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.1);
         }
 
         .subhead {
@@ -200,7 +205,7 @@
         }
         .mealprev, .sugprev {
             position: relative;
-            background-color: #17b890;
+            background-color: var(--options-colour);
             width: calc(var(--section-size) - 5vw);
             height: 10vh;
             /* left: 5vw; */
@@ -209,6 +214,8 @@
             /* display: inline-block; */
             /* float: left; */
             display: inline-block;
+            box-shadow: (-0.1em -0.1em 5px 0 white/rgba(255, 255, 255, 0.6));
+            box-shadow: (0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.1));
         }
         text{ 
             position: relative;
