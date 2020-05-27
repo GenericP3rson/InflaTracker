@@ -116,31 +116,34 @@
             width: 150px;
             height: 50px;
             background-color: var(--button-background1);
-            left: calc(40vw - 75px);
+            left: calc(var(--section-size)/2 - 75px);
             position: relative;
             margin-top: 5vh;
             color: var(--text-colour);
         }
 
-        button:hover {
-            transform: rotate(5deg);
+        button:hover, #profile_button:hover {
+            /* transform: rotate(5deg); */
             background-color: var(--button-background2);
         }
 
         .section {
+            --section-size: 42vw;
             position: relative;
-            width: 80%;
-            left: 10vw;
-            height: 40vh;
+            width: var(--section-size);
+            left: 5vw;
+            height: 60vh;
             background-color: var(--background-colour);
-            margin-top: 5vh;
+            /* margin-top: 5vh; */
             margin-bottom: 5vh;
+            border-radius: 50px;
         }
 
         .subhead {
             padding-top: 5vh;
             color: var(--text-colour);
             text-align: center;
+            text-decoration: none;
         }
         
         #welcome {
@@ -166,12 +169,13 @@
             border-radius: 100px
         }
 
-        /* #select {
+        #select {
             float: left;
-        } */
-        /* #suggestions {
-            margin-left: 10vh;
-        } */
+        }
+        #suggestions {
+            float: left;
+            margin-left: calc(( 90vw - 2*var(--section-size) ));
+        }
 
         #id_panels {
             position: relative;
@@ -180,6 +184,44 @@
             height: 60vh;
             overflow: none;
             margin: 0 auto;
+        }
+        #two_panels {
+            display: inline-block;
+        }
+        
+        .subelements {
+            position: relative;
+            /* background-color: var(--button-background2); */
+            width: calc(var(--section-size) - 5vw);
+            height: 30vh;
+            left: 2.5vw;
+            border-radius: 50px;
+            /* display: inline-block; */
+        }
+        .mealprev, .sugprev {
+            position: relative;
+            background-color: #17b890;
+            width: calc(var(--section-size) - 5vw);
+            height: 10vh;
+            /* left: 5vw; */
+            margin-top: 0.5vw;
+            border-radius: 50px;
+            /* display: inline-block; */
+            /* float: left; */
+            display: inline-block;
+        }
+        text{ 
+            position: relative;
+            color:white;
+            top: 3vh;
+            float: left;
+            margin-left: 2vw;
+        }
+        .sugg {
+            top: 1.5vh;
+            margin-top: 0;
+            float: left;
+            left: calc(var(--section-size) - 3vw - 300px);
         }
     </style>
 </head>
@@ -198,25 +240,52 @@
     </div>
     <div id="profile" class="section">
         <h1 class="subhead" id = "welcome">Welcome!</h1>
-        <a href = "profile.html"><button id="profile_button">Edit Profile! &#8594;</button></a>
+        <a href = "profile.html"><button id="profile_button">Edit Profile &#8594;</button></a>
     </div>
     <div id = "two_panels">
         <div id="select" class="section">
-            <h1 class="subhead">Don't Forget to Log Your Meals!</h1>
-                <button>Find More Foods &#8594;</button>
+            <h1 class="subhead">Log Your Meals</h1>
+            <div id="three_meals" class = "subelements">
+                <div class="mealprev">
+                    <text>Food1</text>
+                    <button class = "sugg">Add Food &#8594;</button>
+                </div>
+                <div class="mealprev">
+                    <text>Food1</text>
+                    <button class = "sugg">Add Food &#8594;</button>
+                </div>
+                <div class="mealprev">
+                    <text>Food1</text>
+                    <button class = "sugg">Add Food &#8594;</button>
+                </div>
+            </div>
+            <a href = "pickFoods.html"><button>Find More Foods &#8594;</button></a>
         </div>
         <div id="suggestions" class="section">
             <h1 class="subhead">Your Suggestions</h1>
-                <div id="three_suggestions"></div>
-                <button>See More! &#8594;</button>
+                <div id="three_suggestions" class = "subelements">
+                    <div class="sugprev">
+                        <text>Food1</text>
+                        <button class = "sugg">Try it! &#8594;</button>
+                    </div>
+                    <div class="sugprev">
+                        <text>Food1</text>
+                        <button class = "sugg">Try it! &#8594;</button>
+                    </div>
+                    <div class="sugprev">
+                        <text>Food1</text>
+                        <button class = "sugg">Try it! &#8594;</button>
+                    </div>
+                </div>
+                <a href = "predictions.html"><button>See More &#8594;</button></a>
         </div>
     </div>
-    <!-- <div id="bottom_bar">
+    <div id="bottom_bar">
         <a href=""><img id="bottom" src="favicon.ico"></a>
         <ul id="top_bar_2">
             <li><a href="" class="left" id="copy">&#169; 2020 ClonesCode</a></li>
         </ul>
-    </div> -->
+    </div>
 </body>
 
 </html>
