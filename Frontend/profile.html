@@ -12,8 +12,8 @@
 
         :root {
             --top-bar-size: 15vh;
-            --button-background1: #7ee081;
-            --button-background2: #c3f3c0;
+            --button-background1: rgb(173, 189, 229);
+            --button-background2: rgb(193, 208, 248);
             --text-colour: white;
             --background-colour: #462255;
         }
@@ -80,6 +80,7 @@
 
         body {
             margin-top: var(--top-bar-size);
+            color: white;
         }
 
         #bottom_bar {
@@ -122,20 +123,8 @@
         }
 
         button:hover {
-            transform: rotate(5deg);
+            /* transform: rotate(5deg); */
             background-color: var(--button-background2);
-        }
-
-        .section {
-            position: relative;
-            width: 80%;
-            left: 10vw;
-            height: 40vh;
-            background-color: var(--background-colour);
-            margin-top: 25vh;
-            margin-bottom: 5vh;
-            text-align: center;
-            color: var(--text-colour);
         }
 
         .subhead {
@@ -185,6 +174,94 @@
             overflow: none;
             margin: 0 auto;
         }
+        .section {
+            background: rgb(197, 205, 226);
+            position: relative; 
+            /* width: 20em; */
+            /* left: calc(100% - 21em); */
+            color: var(--shade-1);
+            border-radius: 10px;
+            box-shadow: 0.3em 0.2em 5px 0 rgba(0, 0, 0, 0.3) inset,
+            -0.3em -0.2em 16px 0 rgba(255, 255, 255, 0.9) inset,
+            0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.05);
+            width: 45vw;
+            height: 75vh;
+            margin-top: 5vh;
+            margin-bottom: 5vh;
+            text-align: center;
+            /* top: 0; */
+            margin-left: 3vw;
+            /* margin-right: 5vw; */
+        }
+        .sidebyside {
+            display: inline-block;
+            position: relative;
+            /* width: 80vw; */
+            /* height: 20vh; */
+            top: 0;
+            left: 0;
+            /* margin-left: 10vw; */
+        }
+        #topone {
+            width: 80vw;
+            margin-left: 5vw;
+            margin-top: 1vh;
+        }
+        #photo {
+            width: 15vh;
+            height: 15vh;
+            position: relative;
+            border-radius: 5em;
+            /* left: 5vw; */
+            top: 15vh;
+        }
+        #logout {
+            top: 15vh;
+        }
+        #name {
+            position: relative;
+            top: 15vh;
+        }
+        #colleft, #colright {
+            float: left;
+            text-align: left;
+            left: 0;
+            font-size: 25px;
+            top: 10vh;
+            position: relative;
+        }
+        #colleft {
+            margin-right: 5vw;
+        }
+        #update {
+            top: 15vh;
+        }
+        #acchead {
+            text-align: left;
+            margin-left: 5vh;
+            /* width: 10vw;
+            height: 100%; */
+            top: 0;
+        }
+        .inpright {
+            height: 15px;
+        }
+        #stats, #prof { 
+            float: left;
+        }
+        #screen {
+            display: inline-block;
+        }
+        #imgdiv {
+            width: 100%;
+            height: 10vh;
+        }
+        #stats {
+            width: 30vw;
+        }
+        #prof {
+            width: 60vw;
+        }
     </style>
 </head>
 
@@ -200,13 +277,34 @@
         <a href="profile.html" class="right">Profile</a>
         <a href="predictions.html" class="right">Predictions</a>
     </div>
-    <div id = "stats" class = "section">
-        <h1 class="subhead">Profile</h1>
-        Name: <input type="text"><br><br>
-        Username: <input type = "text"><br><br>
-        Password: <input type = "password"><br><br>
-        Retype Password: <input type="password"><br><br>
-        <button>Update Profile</button>
+    <div class = "screen">
+        <div id="stats" class = "section">
+            <div id = "imgdiv">
+                <img src="img.jpg" id="photo">
+            </div>
+            <br>
+            <h1 id="name"><br>SARAH CROSS</h1>
+            <button id = "logout">Log Out</button>
+        </div>
+        <div id="prof" class = "section">
+            <h1 id="acchead">Account</h1>
+            <div id="two_col" class="sidebyside">
+                <div id="colleft">
+                    Name: <br><br>
+                    Username: <br><br>
+                    Password: <br><br>
+                    Retype Password:
+                </div>
+                <div id="colright">
+                    <input type="text" class="inpright"><br><br>
+                    <input type="text" class="inpright"><br><br>
+                    <input type="password" class="inpright"><br><br>
+                    <input type="password" class="inpright">
+                </div>
+            </div>
+            <br><br>
+            <button id = "update">Update Profile</button>
+        </div>
     </div>
     <div id="bottom_bar">
         <a href=""><img id="bottom" src="favicon.ico"></a>
