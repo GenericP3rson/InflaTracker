@@ -14,4 +14,4 @@ In our first version, submitted to and winning the Congressional App Challenge u
 For our next version, we hope to add a database, increase the speed of the application, add a more robust algorithm, and tidy the UI. 
 
 ### Contact Us
-If you have any questions about the application or if you'd like to help, please contact us at [clonescode@gmail.com](clonescode@gmail.com). We'd love to hear from you!
+If you have any questions about the application or if you'd like to help, please contact us at clonescodes@gmail.com. We'd love to hear from you!
