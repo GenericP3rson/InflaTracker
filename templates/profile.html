@@ -3,114 +3,290 @@
 
 <head>
     <title>InflaTracker</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/220a280fe8.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link href="{{ url_for('static', filename='loginFile.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='general.css')}}">
     <style>
-        #profile {
-            background: rgb(118, 206, 250) !important;
+        @font-face {
+            font-family: "Montserrat";
+            src: "{{url_for('static', filename='Montserrat/Montserrat-Regular.ttf')}}" format("truetype");
         }
 
-        #listOfStuffToChange {
-            margin-top: calc(75px + 7em);
+        :root {
+            --top-bar-size: 15vh;
+            --button-background1: rgb(173, 189, 229);
+            --button-background2: rgb(193, 208, 248);
+            --text-colour: white;
+            --background-colour: #462255;
         }
 
-        #listOfStuffToChange>div {
-            border: 2px solid white;
-            color: white;
-            padding: 2px;
-            margin-top: -2px;
+        #top_bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--top-bar-size);
+            background: var(--shade-2);
+            overflow: hidden;
+            box-shadow: 0 0.1em 5px 0 rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        #logo_div {
+            width: 100%;
+            height: calc(var(--top-bar-size) - 1em);
+        }
+
+        #top_bar>a {
+            color: var(--background-color);
+            outline: none;
+            border: none;
+            display: block;
+            top: -2em;
+            text-decoration: none;
+            font-family: "Montserrat";
+        }
+
+        #top_bar>*:hover {
+            transition: 0.25s;
+            background: var(--shade-3);
+        }
+
+        #top_bar>* {
+            width: calc(100% / 5);
+            height: var(--top-bar-size);
+            transition: 0.25s;
+            float: left;
+            text-align: center;
+            font-weight: 900;
             letter-spacing: 2px;
+            line-height: var(--top-bar-size);
+            white-space: nowrap;
+        }
+
+        #wrapper>#big {
+            width: calc(var(--top-bar-size) - 1em);
+            height: calc(var(--top-bar-size) - 1em);
+            position: relative;
+        }
+
+        #wrapper>#small {
+            display: block;
+            position: absolute;
+            width: calc(100% / 5);
+            top: calc(var(--top-bar-size) - 4em);
+            height: 4em;
+            text-align: center;
+            color: var(--background-color);
+        }
+
+        body {
+            margin-top: var(--top-bar-size);
+            color: white;
+        }
+
+        #bottom_bar {
+            position: relative;
+            top: 0;
+            left: 0;
+            background-color: var(--background);
+            width: 100%;
+            height: 10vh;
+            border-top: 1px solid grey;
+        }
+
+        #bottom {
+            position: relative;
+            height: 8vh;
+            width: 8vh;
+            padding: 0;
+            margin: 0;
+            float: left;
+        }
+
+        #copy {
+            float: right;
+            padding-top: 0;
+            position: relative;
+        }
+
+        #copy:hover {
+            color: var(--colour1)
+        }
+
+        button, #update {
+            width: 150px;
+            height: 50px;
+            background-color: var(--button-background1);
+            position: relative;
+            color: var(--text-colour);
+        }
+
+        button:hover, #update {
+            background-color: var(--button-background2);
+        }
+
+        #profile_button {
+            float: right;
+            width: 150px;
+            height: 50px;
+            background-color: var(--button-background1);
+            left: 0;
+            position: relative;
+            margin: 5vh;
+            color: var(--text-colour);
+        }
+
+        #profile {
+            margin-top: 17vh;
+            left: 5vw;
+            width: 90vw;
+            height: calc(50px + 10vh);
+            border-radius: 100px
+        }
+
+        #select {
+            float: left;
+        }
+
+        #suggestions {
+            margin-left: 10vh;
+        }
+
+        #id_panels {
+            position: relative;
+            top: 0;
+            left: 10vw;
+            height: 60vh;
+            overflow: none;
+            margin: 0 auto;
+        }
+        .section {
+            background: rgb(197, 205, 226);
+            position: relative; 
+            color: var(--shade-1);
+            border-radius: 10px;
+            box-shadow: 0.3em 0.2em 5px 0 rgba(0, 0, 0, 0.3) inset,
+            -0.3em -0.2em 16px 0 rgba(255, 255, 255, 0.9) inset,
+            0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.05);
+            width: 45vw;
+            height: 75vh;
+            margin-top: 5vh;
+            margin-bottom: 5vh;
+            text-align: center;
+            margin-left: 3vw;
+        }
+        .sidebyside {
+            display: inline-block;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        #topone {
+            width: 80vw;
+            margin-left: 5vw;
+            margin-top: 1vh;
+        }
+        #photo {
+            width: 15vh;
+            height: 15vh;
+            position: relative;
+            border-radius: 5em;
+            top: 15vh;
+        }
+        #logout {
+            top: 15vh;
+        }
+        #name {
+            position: relative;
+            top: 15vh;
+        }
+        #colleft, #colright {
+            float: left;
+            text-align: left;
+            left: 0;
+            font-size: 25px;
+            top: 10vh;
+            position: relative;
+        }
+        #colleft {
+            margin-right: 5vw;
+        }
+        #update {
+            top: 15vh;
+        }
+        #acchead {
+            text-align: left;
+            margin-left: 5vh;
+            top: 0;
+        }
+        .inpright {
+            height: 15px;
+        }
+        #stats, #prof { 
+            float: left;
+        }
+        #screen {
+            display: inline-block;
+        }
+        #imgdiv {
+            width: 100%;
+            height: 10vh;
+        }
+        #stats {
+            width: 30vw;
+        }
+        #prof {
+            width: 60vw;
         }
     </style>
 </head>
 
 <body>
-    {% if accountInfo %}
-    {% if accountInfo.user != "" %}
-    <div id="card">
-        {% if accountInfo.theProfileImg %}
-        <img src="{{ accountInfo.theProfileImg }}" alt="Profile Img" id="profilePic">
-        {% else %}
-        <img src="{{ logo }}" alt="Profile Img" id="profilePic">
-        {% endif %}
-        <div id="name">{{accountInfo.user}}</div>
+    <div id="background"></div>
+    <div id="top_bar">
+        <a href="home.html" class="left">Home</a>
+        <a href="pickFoods.html" class="left">Pick Foods</a>
+        <a id="wrapper" href="about.html">
+            <img src="{{url_for('static', filename='favicon.ico')}}" href="about.html" id="big">
+            <div id="small">InflaTracker</div>
+        </a>
+        <a href="profile.html" class="right">Profile</a>
+        <a href="predictions.html" class="right">Predictions</a>
     </div>
-    <div id="listOfStuffToChange">
-        <div id="userchange" class="aag">Edit Username</div>
-        <div id="namechange" class="aag">Edit Name</div>
-        <div id="passwordchange" class="aag">Edit Password</div>
-        <div id="signout" class="aa">Sign Out</div>
-        <div id="goodfood" class="bb"></div>
-        <div id="badfood" class="bb"></div>
-        <div id="gooding" class="bb"></div>
-        <div id="bading" class="bb"></div>
+    <div class = "screen">
+        <div id="stats" class = "section">
+            <div id = "imgdiv">
+                <img src="{{url_for('static', filename='img.jpg')}}" id="photo">
+            </div>
+            <br>
+            <h1 id="name"><br>SARAH CROSS</h1>
+            <button id = "logout">Log Out</button>
+        </div>
+        <div id="prof" class = "section">
+            <h1 id="acchead">Account</h1>
+            <div id="two_col" class="sidebyside">
+                <div id="colleft">
+                    Name: <br><br>
+                    Username: <br><br>
+                    Password: <br><br>
+                    Retype Password:
+                </div>
+                <div id="colright">
+                    <input type="text" class="inpright"><br><br>
+                    <input type="text" class="inpright"><br><br>
+                    <input type="password" class="inpright"><br><br>
+                    <input type="password" class="inpright">
+                </div>
+            </div>
+            <br><br>
+            <input type="submit" id = "update" value = "Update Profile">
+        </div>
     </div>
-    <!--Okay, here we fill in some info about our user.
-            Some things we should contain:
-            - Things they recently ate
-            - 
-            -->
-    <div id="bottom_navigator">
-        <p id="swap"></p>
-        <a class="chi" href="profile.html" id="profile"><i class="fas fa-user"></i></a>
-        <a class="chi" href="stats.html" id="stats"><i class="fas fa-chart-line"></i></a>
-        <a class="chi" href="search.html" id="search"><i class="fas fa-search"></i></a>
+    <div id="bottom_bar">
+        <a href=""><img id="bottom" src="{{url_for('static', filename='favicon.ico')}}"></a>
+        <ul id="top_bar_2">
+            <li><a href="" class="left" id="copy">&#169; 2020 ClonesCode</a></li>
+        </ul>
     </div>
-    <script>
-        let elements = document.getElementsByClassName("aag")
-        for (let i = 0; i < elements.length; i++) {
-            console.log(elements[i])
-            elements[i].addEventListener("click", () => {
-                let enterNew = prompt(elements[i].innerHTML)
-                let xhttp = new XMLHttpRequest()
-                xhttp.onreadystatechange = () => {
-                    if (xhttp.readyState == 4 && xhttp.status == 200) {
-                        window.location.reload(true)
-                    }
-                }
-                xhttp.open("GET", `/edit/${elements[i].id}/${enterNew}`)
-                xhttp.send()
-            })
-        }
-        let recs = document.getElementsByClassName("bb");
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = (e) => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                let everything = e.target.responseText.split(";; ");
-                let phrases = ["INGREDIENTS TO EAT", "INGREDIENTS NOT TO EAT", "FOODS TO EAT", "FOODS NOT TO EAT"];
-                let colour = ["rgb(0, 255, 0)", "rgb(255, 51, 0)", "rgb(0, 255, 0)", "rgb(255, 51, 0)"];
-                let things = [goodfood, badfood, gooding, bading];
-                for (let i = 0; i < things.length; ++i) {
-                    recs[i].innerHTML = `${phrases[i]}<br>>${everything[i].split(",, ").join("<br>>")}`;
-                    // alert(phrases[i] + ": " + everything[i]);
-                    recs[i].style.color = colour[i];
-                }
-                // document.getElementById("back").checked = true;
-            }
-        }
-        xhttp.open("GET", "analyse");
-        xhttp.send();
-    </script>
-    {% else %}
-    <!--Ok, we don't have an account set up yet.-->
-    <!--We're going to make a super quick login portal for now, nothing fancy.-->
-    <div id="loading"></div>
-    <div id="login">
-        <img src="{{ logo }}" alt="Login Picture" id="pic">
-        <div id="cover"></div>
-        <div id="profileStand">InflaTracker</div>
-        <input type="text" placeholder="Username..." id="user">
-        <input type="password" placeholder="Password..." id="pass">
-        <button id="submitI">Log In</button>
-        <button id="signup">Sign Up</button>
-        <div id="err"></div>
-    </div>
-    <script src="{{ url_for('static', filename='signUp.js') }}"></script>
-    {% endif %}
-    {% endif %}
 </body>
 
 </html>

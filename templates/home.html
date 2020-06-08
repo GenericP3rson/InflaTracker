@@ -3,12 +3,12 @@
 
 <head>
     <title>InflaTracker</title>
-    <script src="redirect.js"></script>
-    <link rel="stylesheet" type="text/css" href="general.css">
+    <script src="{{url_for('static', filename='redirect.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='general.css')}}">
     <style>
         @font-face {
             font-family: "Montserrat";
-            src: url("Montserrat/Montserrat-Regular.ttf") format("truetype");
+            src: "{{url_for('static', filename='Montserrat/Montserrat-Regular.ttf')}}" format("truetype");
         }
 
         :root {
@@ -239,7 +239,7 @@
         <a href="home.html" class="left">Home</a>
         <a href="pickFoods.html" class="left">Pick Foods</a>
         <a id="wrapper" href="about.html">
-            <img src="favicon.ico" href="about.html" id="big">
+            <img src="{{url_for('static', filename='favicon.ico')}}" href="about.html" id="big">
             <div id="small">InflaTracker</div>
         </a>
         <a href="profile.html" class="right">Profile</a>
@@ -288,7 +288,7 @@
         </div>
     </div>
     <div id="bottom_bar">
-        <a href=""><img id="bottom" src="favicon.ico"></a>
+        <a href=""><img id="bottom" src="{{url_for('static', filename='favicon.ico')}}"></a>
         <ul id="top_bar_2">
             <li><a href="" class="left" id="copy">&#169; 2020 ClonesCode</a></li>
         </ul>

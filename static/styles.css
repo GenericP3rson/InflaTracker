@@ -130,7 +130,7 @@ body {
 	z-index: 2;
 	opacity: 0;
 }
-#bottom_navigator {
+/* #bottom_navigator {
 	position: fixed;
 	width: 100%;
 	display: table;
@@ -154,4 +154,4 @@ body {
 #bottom_navigator > a:hover {
 	transition: 0.5s;
 	background: var(--shade-3-light);
-}
+} */

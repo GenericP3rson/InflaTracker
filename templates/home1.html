@@ -5,11 +5,11 @@
 
 <head>
     <title>InflaTracker</title>
-    <link rel="stylesheet" type="text/css" href="general.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='general.css')}}">
     <style>
         @font-face {
             font-family: "Montserrat";
-            src: url("Montserrat/Montserrat-Regular.ttf") format("truetype");
+            src: "{{url_for('static', filename='Montserrat/Montserrat-Regular.ttf')}}" format("truetype");
         }
         :root {
             --top-bar-size: 15vh;
@@ -176,7 +176,7 @@
         <a href="home.html" class="left">Home</a>
         <a href="pickFoods.html" class="left">Pick Foods</a>
         <a id="wrapper" href="about.html">
-            <img src="favicon.ico" href="about.html" id="big">
+            <img src="{{url_for('static', filename='favicon.ico')}}" href="about.html" id="big">
             <div id="small">InflaTracker</div>
         </a>
         <a href="profile.html" class="right">Profile</a>
