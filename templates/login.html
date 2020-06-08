@@ -3,7 +3,7 @@
 <title>InflaTracker</title>
 
 <head>
-    <link href="general.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='general.css')}}" rel="stylesheet">
     <style>
         body {
             -webkit-user-select: none;
@@ -108,10 +108,11 @@
             text-align: center;
         }
     </style>
-    <script src="{{url_for('static', filename='icon.js')}}" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='icons.js')}}" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <form action="/login" method="POST" enctype="multipart/form-data">
     <div id="login">
         <div id="title">LOGIN</div><br>
         <label for="username" id="user1">USERNAME</label><br>
@@ -129,6 +130,7 @@
             <i>Want to <a href="signUp.html">sign up</a> instead?</i>
         </div>
     </div>
+    </form>
     <canvas id="a"></canvas>
     <script>
         let b = document.getElementById("a"),

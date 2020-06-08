@@ -109,26 +109,28 @@
 </head>
 
 <body>
+    <form action="/signup" method="POST" enctype="multipart/form-data">
     <div id="login">
-        <div id="title">SIGN UP</div><br>
-        <label for="username">NAME</label><br>
-        <input type="text" name="name" id="name" placeholder="Type your first and last name">
-        <br>
-        <br>
-        <label for="username">USERNAME</label><br>
-        <input type="text" name="username" id="user" placeholder="Type your username">
-        <br>
-        <br>
-        <label for="password" id="pass1">PASSWORD</label><br>
-        <input type="password" name="password" id="pass" placeholder="Type your password">
-        <br>
-        <br>
-        <label for="re-enter" id="ren1">RETYPE YOUR PASSWORD</label><br>
-        <input type="password" name="re-enter" id="ren" placeholder="Retype your password">
-        <br>
-        <br>
-        <input type="submit" value="SIGN UP" id="sub">
+            <div id="title">SIGN UP</div><br>
+            <label for="username">NAME</label><br>
+            <input type="text" name="name" id="name" placeholder="Type your first and last name">
+            <br>
+            <br>
+            <label for="username">USERNAME</label><br>
+            <input type="text" name="username" id="user" placeholder="Type your username">
+            <br>
+            <br>
+            <label for="password" id="pass1">PASSWORD</label><br>
+            <input type="password" name="password" id="pass" placeholder="Type your password">
+            <br>
+            <br>
+            <label for="re-enter" id="ren1">RETYPE YOUR PASSWORD</label><br>
+            <input type="password" name="re-enter" id="ren" placeholder="Retype your password">
+            <br>
+            <br>
+            <input type="submit" value="SIGN UP" id="sub">
     </div>
+    </form>
     <canvas id="a"></canvas>
     <script>
         let b = document.getElementById("a"),
@@ -176,27 +178,27 @@
         window.addEventListener("load", draw, false)
         window.addEventListener("resize", draw, false)
         // Check whether the passwords match up
-        document.getElementById("sub").addEventListener("click", () => {
-            // Checking whether passwords match. If they don't, turn #ren red
-            let pass1 = document.getElementById("pass").value
-            if(document.getElementById("ren").value !== pass1) {
-                document.getElementById("ren1").style.color = "red"
-                document.getElementById("pass1").style.color = "red"
-            } else {
-                document.getElementById("ren1").style.color = "black"
-                document.getElementById("pass1").style.color = "black"
-                // Okay, now we're trying to sign up.
-                // We will give the information to the backend
-                let xhttp = new XMLHttpRequest()
-                xhttp.onreadystatechange = () => {
-                    if(xhttp.readyState == 4 && xhttp.status == 200) {
-                        window.location.href = xhttp.responseText
-                    }
-                }
-                xhttp.open("POST", "/")
-                xhttp.send(`username=${document.getElementById("user").value}&password=${pass1}`)
-            }
-        })
+        // document.getElementById("sub").addEventListener("click", () => {
+        //     // Checking whether passwords match. If they don't, turn #ren red
+        //     let pass1 = document.getElementById("pass").value
+        //     if(document.getElementById("ren").value !== pass1) {
+        //         document.getElementById("ren1").style.color = "red"
+        //         document.getElementById("pass1").style.color = "red"
+        //     } else {
+        //         document.getElementById("ren1").style.color = "black"
+        //         document.getElementById("pass1").style.color = "black"
+        //         // Okay, now we're trying to sign up.
+        //         // We will give the information to the backend
+        //         let xhttp = new XMLHttpRequest()
+        //         xhttp.onreadystatechange = () => {
+        //             if(xhttp.readyState == 4 && xhttp.status == 200) {
+        //                 window.location.href = xhttp.responseText
+        //             }
+        //         }
+        //         xhttp.open("POST", "/")
+        //         xhttp.send(`username=${document.getElementById("user").value}&password=${pass1}`)
+        //     }
+        // })
     </script>
     <!-- <div id="bottom_navigator">
             <p id="swap"></p>

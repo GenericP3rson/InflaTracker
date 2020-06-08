@@ -120,7 +120,7 @@
             color: var(--text-colour);
         }
 
-        button:hover, #update {
+        button:hover, #update:hover {
             background-color: var(--button-background2);
         }
 
@@ -258,9 +258,10 @@
                 <img src="{{url_for('static', filename='img.jpg')}}" id="photo">
             </div>
             <br>
-            <h1 id="name"><br>SARAH CROSS</h1>
+            <h1 id="name"><br>{{nameUpper}}</h1>
             <button id = "logout">Log Out</button>
         </div>
+        <form action="/updateProfile" method="POST" enctype="multipart/form-data">
         <div id="prof" class = "section">
             <h1 id="acchead">Account</h1>
             <div id="two_col" class="sidebyside">
@@ -271,15 +272,16 @@
                     Retype Password:
                 </div>
                 <div id="colright">
-                    <input type="text" class="inpright"><br><br>
-                    <input type="text" class="inpright"><br><br>
-                    <input type="password" class="inpright"><br><br>
-                    <input type="password" class="inpright">
+                    <input type="text" class="inpright" value = "{{name}}" name="name"><br><br>
+                    <input type="text" class="inpright" value = "{{username}}" name="username"><br><br>
+                    <input type="password" class="inpright" name="password"><br><br>
+                    <input type="password" class="inpright" name="password2">
                 </div>
             </div>
             <br><br>
             <input type="submit" id = "update" value = "Update Profile">
         </div>
+        </form>
     </div>
     <div id="bottom_bar">
         <a href=""><img id="bottom" src="{{url_for('static', filename='favicon.ico')}}"></a>
