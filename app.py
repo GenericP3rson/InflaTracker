@@ -28,7 +28,11 @@ def signup():
     print(username, password)
     USER = username
     db.insert_one(
-        {"name": name, "username": username, "password": hashlib.sha224(password).hexdigest()})
+        {
+            "name": name, "username": username, "password": hashlib.sha224(password).hexdigest(),
+            "favourites": [], "recent": [], "meals": [], "history": {"ingredients": {}, "foods": {}}
+        }
+    )
     return redirect('home.html')
     
 
@@ -74,7 +78,98 @@ def updateProfile():
     db.update_one(db.find_one_or_404({"username": USER}), user)
     USER = username
     return redirect("profile.html")
-    
+
+def getIngredientFromFood(food):
+    # We'll figure this out eventually
+    return ["Ingredient"]
+
+@app.route('/addFavourite/<string:food>')
+def addFav(food):
+    global USER
+    user = db.find_one_or_404({"username": USER})
+    user["favourites"].append(food)
+    user = {"$set": user}
+    db.update_one(db.find_one_or_404({"username": USER}), user)
+    return render_template('pickFoods.html')
+
+
+@app.route('/removeFavourite/<string:food>')
+def rmFav(food):
+    global USER
+    user = db.find_one_or_404({"username": USER})
+    user["favourites"].remove(food)
+    user = {"$set": user}
+    db.update_one(db.find_one_or_404({"username": USER}), user)
+    return render_template('pickFoods.html')
+
+
+@app.route('/addMeal/<string:food>')
+def addMeal(food):
+    global USER
+    user = db.find_one_or_404({"username": USER})
+    user["meals"].append(food)
+    user = {"$set": user}
+    db.update_one(db.find_one_or_404({"username": USER}), user)
+    return render_template('pickFoods.html')
+
+
+@app.route('/removeMeal/<string:food>')
+def rmMeal(food):
+    global USER
+    user = db.find_one_or_404({"username": USER})
+    user["meals"].remove(food)
+    user = {"$set": user}
+    db.update_one(db.find_one_or_404({"username": USER}), user)
+    return render_template('pickFoods.html')
+
+@app.route('/addFood/<string:food>/<string:inflammed>', methods=["POST"])
+def addFood(food, inflammed):
+    global USER
+    user = db.find_one_or_404({"username": USER})
+    inflammed = bool(inflammed)
+    try: # If food exists
+        user["history"]["foods"][food]["times_eaten"]+=1 # adds one to eaten
+        if inflammed: 
+            user["history"]["foods"][food]["inflammed"] += 1 # If inflammed, add one to inflammed
+            for ingredient in user["history"]["foods"][food]["ingredients"]: # Update the ingredients
+                try: # If ingredient exists
+                    user["history"]["ingredients"][ingredient]["times_eaten"] += 1
+                    user["history"]["ingredients"][ingredient]["inflammed"] += 1
+                    user["history"]["ingredients"][ingredient]["proportion"] = user["history"]["foods"][ingredient]["inflammed"] / \
+                        user["history"]["ingredients"][ingredient]["times_eaten"]
+                    user["history"]["ingredients"][ingredient]["foods"].append(food)
+                except: # Else create the ingredient
+                    user["history"]["ingredients"][ingredient] = {
+                        "times_eaten":1 , "inflammed": 1, "proportion": 1, "foods": [food]
+                    }
+        else: 
+            # Update the ingredients
+            for ingredient in user["history"]["foods"][food]["ingredients"]:
+                try:  # If ingredient exists
+                    user["history"]["ingredients"][ingredient]["times_eaten"] += 1
+                    user["history"]["ingredients"][ingredient]["proportion"] = user["history"]["foods"][ingredient]["inflammed"] / \
+                        user["history"]["ingredients"][ingredient]["times_eaten"]
+                    user["history"]["ingredients"][ingredient]["foods"].append(
+                        food)
+                except:  # Else create the ingredient
+                    user["history"]["ingredients"][ingredient] = {
+                        "times_eaten": 1, "inflammed": 0, "proportion": 0, "foods": [food]
+                    }
+        user["history"]["foods"][food]["proportion"] = user["history"]["foods"][food]["inflammed"] / \
+            user["history"]["foods"][food]["times_eaten"]
+    except: 
+        if inflammed:
+            user["history"]["foods"][food] = {
+                "inflammed": 1, "times_eaten": 1, "proportion": 1, "ingredients": getIngredientFromFood(food)}
+        else: 
+            user["history"]["foods"][food] = {
+                "inflammed": 1, "times_eaten": 1, "proportion": 1, "ingredients": getIngredientFromFood(food)}
+    user["current"].append(food)
+    if len(user["current"]) > 10:
+        user["current"].pop(0)
+    user = {"$set": user}
+    db.update_one(db.find_one_or_404({"username": USER}), user)
+    return render_template('pickFoods.html')
 
 @app.route('/<string:name>')
 def page(name):
