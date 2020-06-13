@@ -138,6 +138,22 @@
             margin-left: 3vw;
         }
 
+        #anticontain {
+            background: rgb(226, 197, 197);
+            position: relative; 
+            color: var(--shade-1);
+            border-radius: 10px;
+            box-shadow: 0.3em 0.2em 5px 0 rgba(0, 0, 0, 0.3) inset,
+            -0.3em -0.2em 16px 0 rgba(255, 255, 255, 0.9) inset,
+            0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.05);
+            width: 45vw;
+            height: 75vh;
+            margin-top: 5vh;
+            margin-bottom: 5vh;
+            text-align: center;
+            margin-left: 3vw;
+        }
+
         .container {
             position: relative;
             text-align: center;
@@ -179,6 +195,24 @@
         left: 50%;
         transform: translate(-50%, -50%);
         }
+
+        #noIngredients {
+            display: inline-flex;
+        }
+
+        .opnom {
+            border-radius: 2em;
+            width: 70%;
+            height: 7vh;
+            background-color: rgb(231, 216, 216);
+            list-style-type: none;
+            box-shadow: 0.3em 0.2em 5px 0 rgba(0, 0, 0, 0.3),0.3em 0.2em 5px 0 rgba(0, 0, 0, 0.3) inset;
+            margin-top: 5vh;
+            margin-left: 5vw;
+        }
+        .opnom:hover {
+            background-color: rgb(214, 151, 151);
+        }
     </style>
 </head>
 
@@ -208,6 +242,28 @@
                 <!-- <div class="centered">Center</div> -->
             </div>
             <button id="right">&#8680;</button>
+        </div>
+    </div>
+    <div id = "noIngredients">
+        <div id="anticontain">
+            <h1>Ingredients to AVOID</h1>
+            <ul id = "nom">
+                <li class = "opnom"><br>One</li>
+                <li class = "opnom"><br>Two</li>
+                <li class = "opnom"><br>Three</li>
+                <li class="opnom"><br>Four</li>
+                <li class="opnom"><br>Five</li>
+            </ul>
+        </div>
+        <div id="anticontain">
+            <h1>Foods to AVOID</h1>
+            <ul id = "nom">
+                <li class = "opnom"><br>One</li>
+                <li class = "opnom"><br>Two</li>
+                <li class = "opnom"><br>Three</li>
+                <li class="opnom"><br>Four</li>
+                <li class="opnom"><br>Five</li>
+            </ul>
         </div>
     </div>
     <div id="bottom_bar">
