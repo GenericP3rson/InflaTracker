@@ -1,6 +1,236 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        Predictions
-    </body>
+
+<head>
+    <title>InflaTracker</title>
+    <link rel="stylesheet" type="text/css" href="general.css">
+    <style>
+        @font-face {
+            font-family: "Montserrat";
+            src: url("Montserrat/Montserrat-Regular.ttf") format("truetype");
+        }
+
+        :root {
+            --top-bar-size: 15vh;
+            --button-background1: rgb(173, 189, 229);
+            --button-background2: rgb(193, 208, 248);
+            --text-colour: white;
+            --background-colour: #462255;
+        }
+
+        #top_bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--top-bar-size);
+            background: var(--shade-2);
+            overflow: hidden;
+            box-shadow: 0 0.1em 5px 0 rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        #logo_div {
+            width: 100%;
+            height: calc(var(--top-bar-size) - 1em);
+        }
+
+        #top_bar>a {
+            color: var(--background-color);
+            outline: none;
+            border: none;
+            display: block;
+            top: -2em;
+            text-decoration: none;
+            font-family: "Montserrat";
+        }
+
+        #top_bar>*:hover {
+            transition: 0.25s;
+            background: var(--shade-3);
+        }
+
+        #top_bar>* {
+            width: calc(100% / 5);
+            height: var(--top-bar-size);
+            transition: 0.25s;
+            float: left;
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: var(--top-bar-size);
+            white-space: nowrap;
+        }
+
+        #wrapper>#big {
+            width: calc(var(--top-bar-size) - 1em);
+            height: calc(var(--top-bar-size) - 1em);
+            position: relative;
+        }
+
+        #wrapper>#small {
+            display: block;
+            position: absolute;
+            width: calc(100% / 5);
+            top: calc(var(--top-bar-size) - 4em);
+            height: 4em;
+            text-align: center;
+            color: var(--background-color);
+        }
+
+        body {
+            margin-top: var(--top-bar-size);
+            color: white;
+        }
+
+        #bottom_bar {
+            position: relative;
+            top: 0;
+            left: 0;
+            background-color: var(--background);
+            width: 100%;
+            height: 10vh;
+            border-top: 1px solid grey;
+        }
+
+        #bottom {
+            position: relative;
+            height: 8vh;
+            width: 8vh;
+            padding: 0;
+            margin: 0;
+            float: left;
+        }
+
+        #copy {
+            float: right;
+            padding-top: 0;
+            position: relative;
+        }
+
+        #copy:hover {
+            color: var(--colour1)
+        }
+
+        #slide {
+            width: 70vw;
+            height: 65vh;
+            margin-left: 1vw;
+            margin-right: 1vw;
+        }
+        #carosel {
+            padding-left: 4vw;
+            display: inline-flex;
+        }
+        #contain {
+            background: rgb(197, 205, 226);
+            position: relative; 
+            color: var(--shade-1);
+            border-radius: 10px;
+            box-shadow: 0.3em 0.2em 5px 0 rgba(0, 0, 0, 0.3) inset,
+            -0.3em -0.2em 16px 0 rgba(255, 255, 255, 0.9) inset,
+            0.1em 0.1em 5px 0 rgba(0, 0, 0, 0.05);
+            width: 94vw;
+            height: 75vh;
+            margin-top: 20vh;
+            margin-bottom: 5vh;
+            text-align: center;
+            margin-left: 3vw;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+        }
+
+        .top-left {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        }
+
+        .top-right {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+        }
+
+        .bottom-right {
+            width: 25%;
+            height: 7vh;
+            background-color: black;
+            position: absolute;
+            bottom: 8px;
+            right: 16px;
+            font-size: 2em;
+            margin-top: 5vh;
+        }
+
+        .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="background"></div>
+    <div id="top_bar">
+        <a href="home.html" class="left">Home</a>
+        <a href="pickFoods.html" class="left">Pick Foods</a>
+        <a id="wrapper" href="about.html">
+            <img src="favicon.ico" href="about.html" id="big">
+            <div id="small">InflaTracker</div>
+        </a>
+        <a href="profile.html" class="right">Profile</a>
+        <a href="predictions.html" class="right">Predictions</a>
+    </div>
+    <div id ="randdiv" style="width: 10vh; position: relative;"></div>
+    <div id = "contain">
+        <h1 id = "checkout">Check Out Foods You CAN Eat!</h1>
+        <div id = "carosel">
+            <button id="left">&#8678;</button>
+            <div class="container">
+                <img id="slide" src="food.jpg">
+                <!-- <div class="bottom-left">Bottom Left</div>
+                <div class="top-left">Top Left</div>
+                <div class="top-right">Top Right</div>-->
+                <div class="bottom-right" id = "cente">Food 1</div> 
+                <!-- <div class="centered">Center</div> -->
+            </div>
+            <button id="right">&#8680;</button>
+        </div>
+    </div>
+    <div id="bottom_bar">
+        <a href=""><img id="bottom" src="favicon.ico"></a>
+        <ul id="top_bar_2">
+            <li><a href="" class="left" id="copy">&#169; 2020 ClonesCode</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    let good_images = ["food.jpg", "food2.jpeg"];
+    let foods = ["Food 1", "Food 2"];
+    let pos = 0;
+    document.getElementById("right").addEventListener("click", () => {
+        pos = ++pos % good_images.length;
+        document.getElementById("slide").src = good_images[pos];
+        document.getElementById("cente").innerHTML = foods[pos];
+    });
+    document.getElementById("left").addEventListener("click", () => {
+        pos = --pos < 0 ? good_images.length-1 : pos;
+        document.getElementById("slide").src = good_images[pos];
+        document.getElementById("cente").innerHTML = foods[pos];
+    });
+</script>
+
 </html>
