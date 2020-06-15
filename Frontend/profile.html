@@ -204,7 +204,7 @@
             text-align: left;
             left: 0;
             font-size: 25px;
-            top: 10vh;
+            top: 8vh;
             position: relative;
         }
         #colleft {
@@ -258,28 +258,32 @@
                 <img src="img.jpg" id="photo">
             </div>
             <br>
-            <h1 id="name"><br>SARAH CROSS</h1>
+            <h1 id="name"><br></h1>
             <button id = "logout">Log Out</button>
         </div>
+        <!-- <form action="/update" method="POST" enctype="multipart/form-data"> -->
         <div id="prof" class = "section">
             <h1 id="acchead">Account</h1>
             <div id="two_col" class="sidebyside">
                 <div id="colleft">
                     Name: <br><br>
                     Username: <br><br>
-                    Password: <br><br>
-                    Retype Password:
+                    Old Password: <br><br>
+                    New Password: <br><br>
+                    Retype New Password:
                 </div>
                 <div id="colright">
-                    <input type="text" class="inpright"><br><br>
-                    <input type="text" class="inpright"><br><br>
-                    <input type="password" class="inpright"><br><br>
-                    <input type="password" class="inpright">
+                    <input type="text" class="inpright" id = "namebox"><br><br>
+                    <input type="text" class="inpright" id = "userbox"><br><br>
+                    <input type="password" class="inpright" id = "oldpassbox"><br><br>
+                    <input type="password" class="inpright" id="passbox1"><br><br>
+                    <input type="password" class="inpright" id = "passbox2">
                 </div>
             </div>
             <br><br>
             <input type="submit" id = "update" value = "Update Profile"></button>
         </div>
+        <!-- </form> -->
     </div>
     <div id="bottom_bar">
         <a href=""><img id="bottom" src="favicon.ico"></a>
@@ -287,6 +291,26 @@
             <li><a href="" class="left" id="copy">&#169; 2020 ClonesCode</a></li>
         </ul>
     </div>
+    <script>
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = () => {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                let user = xhttp.responseText.split(";;");
+                document.getElementById("name").innerHTML = `<br>${user[0]}`;
+                document.getElementById("namebox").value = `${user[0]}`;
+                document.getElementById("userbox").value = `${user[1]}`;
+            }
+        };
+        xhttp.open("GET", "/data", true);
+        xhttp.send();
+
+        // xhttp = new XMLHttpRequest();
+        // document.getElementById("update").addEventListener("click", () => {
+
+        // });
+        // xhttp.open("POST", "/update")
+        // xhttp.send(`name|${document.getElementById("namebox")}&username|${document.getElementById("userbox")}&oldpassword|${document.getElementById("oldpassbox")}&newpass1|${document.getElementById("passbox1")}&newpass2|${document.getElementById("passbox2xs")}`);
+    </script>
 </body>
 
 </html>

@@ -194,7 +194,7 @@
                     }
                 }
                 xhttp.open("POST", "/")
-                xhttp.send(`username=${document.getElementById("user").value}&password=${pass1}`)
+                xhttp.send(`username=${document.getElementById("user").value}&password=${pass1}&name=${document.getElementById("name").value}`)
             }
         })
     </script>
