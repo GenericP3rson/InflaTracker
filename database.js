@@ -101,7 +101,7 @@ const DatabaseWork = {
      * @param {String} newUser
      * @param {String} newPass
     */
-    changeCredentials: async function (oldUser, newUser, newPass) {
+    changeCredentials: async function (oldUser, oldPass, newName, newUser, newPass) {
         try {
             await this.client.connect((err) => {
                 if (err) {
@@ -109,8 +109,8 @@ const DatabaseWork = {
                     return false;
                 }
                 let dbo = this.client.db("InflaTracker"); // Connects
-                let myquery = { username: oldUser }; // The query
-                let newvalues = { $set: { username: newUser, password: this.hashPassword(newPass) } }; // Set for new values
+                let myquery = { username: oldUser, password: oldPass }; // The query
+                let newvalues = { $set: { name: newName, username: newUser, password: this.hashPassword(newPass) } }; // Set for new values
                 dbo.collection("InflaTracker").updateOne(myquery, newvalues, function (err, res) { // Updates
                     if (err) {
                         console.warn(err);
@@ -119,6 +119,7 @@ const DatabaseWork = {
                     console.log("1 user updated");
                     return true; // True if good
                     // db.close();
+                    
                 });
             }); // Connects to client
         } catch (err) {

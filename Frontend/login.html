@@ -185,16 +185,16 @@
             xhttp.onreadystatechange = () => {
                 if(xhttp.readyState == 4 && xhttp.status == 200) {
                     // window.location.href = xhttp.responseText
-                    console.log(xhttp.responseText)
+                    console.log(xhttp.responseText);
                     if(xhttp.responseText == "false") {
                         // Login failed
-                        document.getElementById("user1").style.color = "red"
-                        document.getElementById("pass1").style.color = "red"
+                        document.getElementById("user1").style.color = "red";
+                        document.getElementById("pass1").style.color = "red";
                     } else {
-                        document.getElementById("user1").style.color = "black"
-                        document.getElementById("pass1").style.color = "black"
+                        document.getElementById("user1").style.color = "black";
+                        document.getElementById("pass1").style.color = "black";
                         // Reroute to home page
-                        window.location.href = "home.html"
+                        window.location.href = "home.html";
                     }
                 }
             }

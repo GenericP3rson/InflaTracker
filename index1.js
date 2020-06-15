@@ -62,55 +62,69 @@ let serv = http.createServer((req, res) => {
             // We've received all the chunks and now we process them.
             let messageI = false,
             kee = message.split("&");
-            for(let i = 0; i < kee.length; i++) {
-                // What are they asking for?
-                // console.log(kee[i].split("|").length == 1, kee[i].split("=").length == 1)
-                if(kee[i].split("=").length == 1 && kee[i].split("|").length == 1) {
-                    if("name" in userLoggedIn && "password" in userLoggedIn) { // If logged in
-                        res.writeHead(200);
-                        res.write("Logged in.");
-                        res.end();
-                        messageI = true;
-                    } else { // Then they need to go to the signin page.
-                        res.writeHead(403);
-                        res.write("login.html");
-                        res.end();
-                        console.log("Reroute to login.");
-                        messageI = true;
-                    }
-                    break;
-                } else if(kee[i].split("|").length > 1) {
-                    if (req.url == "/update") {
-                        console.log("Something Something Something");
-                    }
-                    // Okay, here we check
-                    // *SIGN IN HERE*
-                    // database.
-                    console.log("Trying to sign in...");
-                    database.authenticate(kee[0].split("|")[1], kee[1].split("|")[1]).then((val) => {
-                        // Now that we're logged in,
-                        // Take in the info we've got and put it into userLoggedIn
-                        res.write(val.toString());
-                        if(val) {
-                            // Putting it into userLoggedIn
-                            userLoggedIn = val;
+            if (req.url == "/update") {
+                let obj = {};
+                for (let i = 0; i < kee.length; i++) {
+                    let brea = kee[i].split("|")
+                    obj[brea[0]] = brea[1];
+                }
+                console.log(obj);
+                console.log(userLoggedIn["username"] +""+ obj["oldpassword"] +  obj["name"] + obj["username"] + obj["newpass1"]);
+                let x = database.changeCredentials(userLoggedIn["username"], obj["oldpassword"], obj["name"], obj["username"], obj["newpass1"]);
+                console.log("Success?");
+                console.log(x);
+            } else {
+                for(let i = 0; i < kee.length; i++) {
+                    // What are they asking for?
+                    // console.log(kee[i].split("|").length == 1, kee[i].split("=").length == 1)
+                    if(kee[i].split("=").length == 1 && kee[i].split("|").length == 1) {
+                        if("name" in userLoggedIn && "password" in userLoggedIn) { // If logged in
+                            res.writeHead(200);
+                            res.write("Logged in.");
+                            res.end();
+                            messageI = true;
+                        } else { // Then they need to go to the signin page.
+                            res.writeHead(403);
+                            res.write("login.html");
+                            res.end();
+                            console.log("Reroute to login.");
+                            messageI = true;
                         }
-                        res.end();
-                    })
-                    messageI = true;
-                    break
+                        break;
+                    } else if(kee[i].split("|").length > 1) {
+                        // if (req.url == "/update") {
+                        //     console.log("Something Something Something");
+                        //     console.log(kee[i].split("|"));
+                        // }
+                        // Okay, here we check
+                        // *SIGN IN HERE*
+                        // database.
+                        console.log("Trying to sign in...");
+                        database.authenticate(kee[0].split("|")[1], kee[1].split("|")[1]).then((val) => {
+                            // Now that we're logged in,
+                            // Take in the info we've got and put it into userLoggedIn
+                            res.write(val.toString());
+                            if(val) {
+                                // Putting it into userLoggedIn
+                                userLoggedIn = val;
+                            }
+                            res.end();
+                        })
+                        messageI = true;
+                        break
+                    }
+                    else {
+                        // *SIGN UP HERE*
+                        database.addUser(kee[0].split("=")[1], kee[1].split("=")[1], kee[2].split("=")[1]); // Oh! Okay, let's do this then!
+                        break
+                    }
                 }
-                else {
-                    // *SIGN UP HERE*
-                    database.addUser(kee[0].split("=")[1], kee[1].split("=")[1], kee[2].split("=")[1]); // Oh! Okay, let's do this then!
-                    break
+                if(!messageI) {
+                    console.log(messageI);
+                    res.writeHead(200, {"Content-Type": MIMETypes["html"]});
+                    res.write("home.html");
+                    res.end();
                 }
-            }
-            if(!messageI) {
-                console.log(messageI);
-                res.writeHead(200, {"Content-Type": MIMETypes["html"]});
-                res.write("home.html");
-                res.end();
             }
         })
     }

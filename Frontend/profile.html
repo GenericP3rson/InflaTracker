@@ -305,11 +305,19 @@
         xhttp.send();
 
         // xhttp = new XMLHttpRequest();
-        // document.getElementById("update").addEventListener("click", () => {
-
-        // });
-        // xhttp.open("POST", "/update")
-        // xhttp.send(`name|${document.getElementById("namebox")}&username|${document.getElementById("userbox")}&oldpassword|${document.getElementById("oldpassbox")}&newpass1|${document.getElementById("passbox1")}&newpass2|${document.getElementById("passbox2xs")}`);
+        document.getElementById("update").addEventListener("click", () => {
+            if (document.getElementById("passbox1").value != document.getElementById("passbox2").value) {
+                throw "PASSWORDS DON'T MATCH";
+            }
+            else {
+                xhttp.onreadystatechange = () => {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    }
+                }
+                xhttp.open("POST", "/update")
+                xhttp.send(`name|${document.getElementById("namebox").value}&username|${document.getElementById("userbox").value}&oldpassword|${document.getElementById("oldpassbox").value}&newpass1|${document.getElementById("passbox1").value}&newpass2|${document.getElementById("passbox2").value}`);
+            }
+        });
     </script>
 </body>
 
